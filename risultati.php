@@ -24,7 +24,7 @@
         if(isset($_GET['check1']) == false && isset($_GET['check2']) == false && isset($_GET['check3']) == false) {
             $corso = "Nessuna attività";
         }
-        $table = "<table style='border:1px solid black'>
+        $table = "<table style='border:1px solid black;width:100%;text-align:center'>
                     <tr>
                         <td>Nome</td>
                         <td>Cognome</td>
