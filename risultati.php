@@ -10,34 +10,38 @@
         $nome = $_GET["nome"];
         $cognome = $_GET["cognome"];
         $orario = $_GET["orario"];
-        $tipoSpostamento = $_GET["radio"];
-        $corso = "";
-        if(isset($_GET['check1']) == true) {
-            $corso = $_GET['check1'] . ",";
+        if(isset($_GET['radio'])) {
+            $tipoSpostamento = $_GET['radio'];
+        } else {
+            $tipoSpostamento = "Non Specificato";
         }
-        if(isset($_GET['check2']) == true) {
-            $corso = $corso . $_GET['check2'] . ",";
+        $corso = [];
+        if(isset($_GET['check1'])) {
+            $corso[] = $_GET['check1'];
         }
-        if(isset($_GET['check3']) == true) {
-            $corso = $corso . $_GET['check3'] . ",";
+        if(isset($_GET['check2'])) {
+            $corso[] = $_GET['check2'];
         }
-        if(isset($_GET['check1']) == false && isset($_GET['check2']) == false && isset($_GET['check3']) == false) {
+        if(isset($_GET['check3'])) {
+            $corso = $_GET['check3'];
+        }
+        if(count($corso)==0) {
             $corso = "Nessuna attività";
         }
         $table = "<table style='border:1px solid black;width:100%;text-align:center'>
                     <tr>
-                        <td>Nome</td>
-                        <td>Cognome</td>
-                        <td>Orario</td>
-                        <td>Tipo di Spostamento</td>
-                        <td>Corsi Frequentati</td>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Orario</th>
+                        <th>Tipo di Spostamento</th>
+                        <th>Corsi Frequentati</th>
                     </tr>
                     <tr>
                         <td>$nome</td>
                         <td>$cognome</td>
                         <td>$orario</td>
                         <td>$tipoSpostamento</td>
-                        <td>$corso</td>
+                        <td>".implode(",",$corso)."</td>
                     </tr>
                 </table>";
         echo $table;
